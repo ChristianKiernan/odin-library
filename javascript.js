@@ -17,12 +17,7 @@ function addBooktoLibrary(title, author, numPages, read) {
     myLibrary.push(objBook);
 };
 
-//Manual book entries for testing
-addBooktoLibrary("The Hobbit", "J.R.R. Tolkien", 235, false);
-addBooktoLibrary("Harry Potter and the Prisoner of Azkaban", "J.K Rowling", 456, true);
-addBooktoLibrary("1984", "George Orwell", 289, true);
-
-
+//Dynamic table to display library to the user
 function displayOnPage(myLibrary) {
     myLibrary.forEach(book => {
         let table = document.querySelector("tbody");
@@ -46,17 +41,39 @@ function displayOnPage(myLibrary) {
     });
 };
 
-//"New book" form logic
-let button = document.querySelector("#new-book");
-button.addEventListener("click", () => {
+//"New book" form display logic
+let newBookButton = document.querySelector("#new-book");
+newBookButton.addEventListener("click", () => {
     let bookForm = document.querySelector(".hidden");
-    if (bookForm.style.display === "none") {
-        bookForm.style.display = "block";
+    toggleVisibility(bookForm);
+});
+
+function toggleVisibility(element) {
+    if (element.style.display !== "block" ) {
+        element.style.display = "block";
     }
     else {
-        bookForm.style.display = "none";
+        element.style.display = "none";
+    }
+};
+
+//"New book" form submission logic
+const submitForm = document.querySelector("form");
+submitForm.addEventListener("submit", (e) => { 
+    e.preventDefault();
+
+    const title = document.querySelector("#title").value;
+    const author = document.querySelector("#author").value;
+    const numPages = document.querySelector("#pages").value;
+    const read = document.querySelector("#read").value;
+    console.log(numPages);
+    console.log(isNaN(title));
+    console.log(isNaN(author));
+    console.log(isNaN(numPages));
+    
+    if (isNaN(title) && isNaN(author) && !isNaN(numPages)) {
+        addBooktoLibrary(title, author, numPages, read);
+        displayOnPage(myLibrary);
     }
 });
 
-
-displayOnPage(myLibrary);
