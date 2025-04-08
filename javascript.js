@@ -7,7 +7,6 @@ function Book(title, author, numPages, read) {
     if (!new.target) {
         throw Error("You must use the 'new' operator to call the constructor");
     }
-
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
@@ -71,7 +70,6 @@ submitForm.addEventListener("submit", (e) => {
     const numPages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").value;
    
-    
     if (isNaN(title) && isNaN(author) && !isNaN(numPages)) {
         addBooktoLibrary(title, author, numPages, read);
         displayOnPage(myLibrary);
