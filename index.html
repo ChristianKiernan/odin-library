@@ -8,17 +8,45 @@
     <title>Library</title>
 </head>
 <body>
-    <div class="container">
-        <table class="book-table">
-            <thead>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Number of Pages</th>
-                <th>Read</th>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-    </div>
+        <div class="sidebar">
+            <div class="new-book">
+                <button id="new-book">New Book</button>
+            </div>
+                <div class="hidden">
+                    <div class="book-form">
+                        <div class="input-caption">
+                            <h4>Title</h4>
+                            <input name="title" id="title" type="text" placeholder="Book title">
+                        </div>
+                        <div class="input-caption">
+                            <h4>Author</h4>
+                            <input name="author" id="author" type="text" placeholder="Book author">
+                        </div>
+                        <div class="input-caption">
+                            <h4>Number of Pages</h4>
+                            <input name="pages" id="pages" type="number" placeholder="Book length (pages)">
+                        </div>
+                        <select name="read" id="read">
+                            <option value="true">I have read this book</option>
+                            <option value="false">I have not read this book</option>
+                        </select>
+                        <div class="new-book">
+                            <button id="submit-book" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            <table class="book-table">
+                <thead>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Number of Pages</th>
+                    <th>Read</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 </body>
 </html>

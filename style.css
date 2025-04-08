@@ -4,16 +4,43 @@
  }
 
  body {
-    display: grid;
+    display: flex;
+    gap: 50px;
     justify-content: center;
+    padding: 50px;
+ }
+
+ .book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+ }
+
+ button {
+    border-radius: 5px;
+    width: 5rem;
  }
 
  .container {
-    margin-top: 50px;
+    width: 700px;
  }
 
- .body-table {
-    border-collapse: collapse;
+ .dialog {
+    display: flex;
+    justify-content: center;
+ }
+
+ .hidden {
+    display: none;
+ }
+
+ input,
+ select {
+    width: 10rem;
+ }
+ .input-caption {
+    display: grid;
+    gap: 5px;
  }
 
  td, 
@@ -21,4 +48,10 @@
  tr {
     border: 1px solid black;
     padding: 5px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

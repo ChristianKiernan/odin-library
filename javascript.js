@@ -46,4 +46,17 @@ function displayOnPage(myLibrary) {
     });
 };
 
+//"New book" form logic
+let button = document.querySelector("#new-book");
+button.addEventListener("click", () => {
+    let bookForm = document.querySelector(".hidden");
+    if (bookForm.style.display === "none") {
+        bookForm.style.display = "block";
+    }
+    else {
+        bookForm.style.display = "none";
+    }
+});
+
+
 displayOnPage(myLibrary);
