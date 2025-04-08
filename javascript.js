@@ -1,4 +1,7 @@
+//Global variables
 const myLibrary = [];
+let librarySizeCounter = myLibrary.length;
+
 
 function Book(title, author, numPages, read) {
     if (!new.target) {
@@ -15,11 +18,12 @@ function Book(title, author, numPages, read) {
 function addBooktoLibrary(title, author, numPages, read) {
     let objBook = new Book(title, author, numPages, read);
     myLibrary.push(objBook);
+    librarySizeCounter += 1;
 };
 
 //Dynamic table to display library to the user
 function displayOnPage(myLibrary) {
-    myLibrary.forEach(book => {
+    for (let i = librarySizeCounter - 1; i < librarySizeCounter; i++) {
         let table = document.querySelector("tbody");
         let row = document.createElement("tr");
         let cellTitle = document.createElement("td");
@@ -27,10 +31,10 @@ function displayOnPage(myLibrary) {
         let cellNumPages = document.createElement("td");
         let cellRead = document.createElement("td");
 
-        cellTitle.innerText = `${book.title}`;
-        cellAuthor.innerText = `${book.author}`;
-        cellNumPages.innerText = `${book.numPages}`;
-        cellRead.innerText = `${book.read}`;
+        cellTitle.innerText = `${myLibrary[i].title}`;
+        cellAuthor.innerText = `${myLibrary[i].author}`;
+        cellNumPages.innerText = `${myLibrary[i].numPages}`;
+        cellRead.innerText = `${myLibrary[i].read}`;
 
         row.appendChild(cellTitle);
         row.appendChild(cellAuthor);
@@ -38,7 +42,7 @@ function displayOnPage(myLibrary) {
         row.appendChild(cellRead);
 
         table.appendChild(row);
-    });
+    }
 };
 
 //"New book" form display logic
@@ -66,10 +70,7 @@ submitForm.addEventListener("submit", (e) => {
     const author = document.querySelector("#author").value;
     const numPages = document.querySelector("#pages").value;
     const read = document.querySelector("#read").value;
-    console.log(numPages);
-    console.log(isNaN(title));
-    console.log(isNaN(author));
-    console.log(isNaN(numPages));
+   
     
     if (isNaN(title) && isNaN(author) && !isNaN(numPages)) {
         addBooktoLibrary(title, author, numPages, read);
