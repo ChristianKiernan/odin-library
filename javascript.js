@@ -52,22 +52,26 @@ function displayOnPage(myLibrary) {
     }
 
     //Logic to remove book from the library array
-    const removeBookButton = document.querySelector(".delete-button");
-        removeBookButton.addEventListener("click", () => {
-            let bookToRemove = removeBookButton.getAttribute("data-id");
-            let newLibrary = myLibrary.filter(function(element) {
-                return element.id !== bookToRemove;
-            });
+    let removeBookButtons = document.querySelectorAll(".delete-button");
+        removeBookButtons.forEach(function (e) {
+            e.addEventListener("click", () => {
+                let bookToRemove = e.getAttribute("data-id");
+                let rowToRemove = document.querySelector(`[data-id="${bookToRemove}"]`);
+                rowToRemove.remove();
+                let newLibrary = myLibrary.filter(function(element) {
+                    return element.id !== bookToRemove;
+                });
             myLibrary = newLibrary;
             librarySizeCounter --;
+            });
 
             //Logic to remove book from table display
-            let rowToRemove = document.querySelector(`[data-id="${bookToRemove}"]`);
-            let indexNum = rowToRemove.rowIndex;
-            let table = document.querySelector("table");
-            table.deleteRow(`${indexNum}`);
-    });
-};
+            // console.log(rowToRemove.rowIndex);
+            // let indexNum = rowToRemove.rowIndex;
+            // let table = document.querySelector("table");
+            // table.deleteRow(`${indexNum}`);
+        });
+    };
 
 //"New book" form display logic
 let newBookButton = document.querySelector("#new-book");
@@ -87,14 +91,14 @@ function toggleVisibility(element) {
 };
 
 //"New book" form submission logic
-const submitForm = document.querySelector("form");
+let submitForm = document.querySelector("form");
 submitForm.addEventListener("submit", (e) => { 
     e.preventDefault();
 
-    const title = document.querySelector("#title").value;
-    const author = document.querySelector("#author").value;
-    const numPages = document.querySelector("#pages").value;
-    const read = document.querySelector("#read").value;
+    let title = document.querySelector("#title").value;
+    let author = document.querySelector("#author").value;
+    let numPages = document.querySelector("#pages").value;
+    let read = document.querySelector("#read").value;
    
     if (isNaN(title) && isNaN(author) && !isNaN(numPages)) {
         addBooktoLibrary(title, author, numPages, read);
