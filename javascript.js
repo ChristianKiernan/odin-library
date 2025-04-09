@@ -14,6 +14,10 @@ function Book(title, author, numPages, read) {
     this.read = read;
 };
 
+Book.prototype.toggle = function () {
+    this.read = !this.read;
+};
+
 function addBooktoLibrary(title, author, numPages, read) {
     let objBook = new Book(title, author, numPages, read);
     myLibrary.push(objBook);
@@ -32,9 +36,10 @@ function displayOnPage(myLibrary) {
         let cellAuthor = document.createElement("td");
         let cellNumPages = document.createElement("td");
         let cellRead = document.createElement("td");
+        cellRead.setAttribute("data-read", `${myLibrary[i].id}`);
     
         let updateButton = document.createElement("button");
-        updateButton.setAttribute("data-id", `1${myLibrary[i].id}`);
+        updateButton.setAttribute("data-identification", `${myLibrary[i].id}`);
         updateButton.classList.add("update-button");
         updateButton.innerHTML = "Update Status";
         let cellUpdateButton = document.createElement("td");
@@ -61,6 +66,26 @@ function displayOnPage(myLibrary) {
 
         table.appendChild(row);
     }
+    
+    //Logic to update "read" status in the library
+    let updateBookButtons = document.querySelectorAll(".update-button");
+        updateBookButtons.forEach(function (e) {
+            e.addEventListener("click", () => {
+                let bookToUpdate = e.getAttribute("data-identification");
+                let targetBook = myLibrary.find(function(element) {
+                    if(element.id === bookToUpdate) {
+                        element.toggle();
+                        let rowToUpdate= document.querySelector(`[data-read="${bookToUpdate}"]`);
+                        if (rowToUpdate.innerHTML !== "false" ) {
+                            rowToUpdate.innerHTML = "false";
+                        }
+                        else {
+                            rowToUpdate.innerHTML = "true";
+                        }
+                    }
+                });
+            });
+        });
 
     //Logic to remove book from the library array and from the user display
     let removeBookButtons = document.querySelectorAll(".delete-button");
@@ -76,7 +101,7 @@ function displayOnPage(myLibrary) {
                 });
             });
         });
-    };
+};
 
 //"New book" form display logic
 let newBookButton = document.querySelector("#new-book");
