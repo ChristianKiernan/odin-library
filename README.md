@@ -1,1 +1,2 @@
 # odin-library
+The Odin Project - JavaScript (First Project). The objective is to create a small Library app. The app stores books (in a book object), and displays them in a table to the user. The user is able to add new books to the library, modify books (such as the "read" status), and delete books.
