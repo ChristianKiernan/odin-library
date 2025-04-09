@@ -51,7 +51,7 @@ function displayOnPage(myLibrary) {
         table.appendChild(row);
     }
 
-    //Logic to remove book from the library array
+    //Logic to remove book from the library array and from the user display
     let removeBookButtons = document.querySelectorAll(".delete-button");
         removeBookButtons.forEach(function (e) {
             e.addEventListener("click", () => {
@@ -60,9 +60,9 @@ function displayOnPage(myLibrary) {
                 rowToRemove.remove();
                 let newLibrary = myLibrary.filter(function(element) {
                     return element.id !== bookToRemove;
+                myLibrary = newLibrary;
+                librarySizeCounter --;
                 });
-            myLibrary = newLibrary;
-            librarySizeCounter --;
             });
 
             //Logic to remove book from table display
