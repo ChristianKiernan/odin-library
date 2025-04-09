@@ -27,26 +27,37 @@ function displayOnPage(myLibrary) {
 
         let row = document.createElement("tr");
         row.setAttribute("data-id", `${myLibrary[i].id}`);
+
         let cellTitle = document.createElement("td");
         let cellAuthor = document.createElement("td");
         let cellNumPages = document.createElement("td");
         let cellRead = document.createElement("td");
+    
+        let updateButton = document.createElement("button");
+        updateButton.setAttribute("data-id", `1${myLibrary[i].id}`);
+        updateButton.classList.add("update-button");
+        updateButton.innerHTML = "Update Status";
+        let cellUpdateButton = document.createElement("td");
 
         let deleteButton = document.createElement("button");
         deleteButton.setAttribute("data-id", `${myLibrary[i].id}`);
         deleteButton.classList.add("delete-button");
         deleteButton.innerHTML = "Delete Book";
+        let cellDeleteButton = document.createElement("td");
 
         cellTitle.innerText = `${myLibrary[i].title}`;
         cellAuthor.innerText = `${myLibrary[i].author}`;
         cellNumPages.innerText = `${myLibrary[i].numPages}`;
         cellRead.innerText = `${myLibrary[i].read}`;
+        cellUpdateButton.appendChild(updateButton);
+        cellDeleteButton.appendChild(deleteButton);
 
         row.appendChild(cellTitle);
         row.appendChild(cellAuthor);
         row.appendChild(cellNumPages);
         row.appendChild(cellRead);
-        row.appendChild(deleteButton);
+        row.appendChild(cellUpdateButton);
+        row.appendChild(cellDeleteButton);
 
         table.appendChild(row);
     }
@@ -64,12 +75,6 @@ function displayOnPage(myLibrary) {
                 librarySizeCounter --;
                 });
             });
-
-            //Logic to remove book from table display
-            // console.log(rowToRemove.rowIndex);
-            // let indexNum = rowToRemove.rowIndex;
-            // let table = document.querySelector("table");
-            // table.deleteRow(`${indexNum}`);
         });
     };
 
