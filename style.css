@@ -25,6 +25,11 @@
     width: 700px;
  }
 
+ .delete-button {
+   width: 100px;
+   height: 25px;
+ }
+
  .dialog {
     display: flex;
     justify-content: center;
