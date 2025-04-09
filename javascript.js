@@ -27,7 +27,6 @@ function displayOnPage(myLibrary) {
 
         let row = document.createElement("tr");
         row.setAttribute("data-id", `${myLibrary[i].id}`);
-
         let cellTitle = document.createElement("td");
         let cellAuthor = document.createElement("td");
         let cellNumPages = document.createElement("td");
@@ -61,6 +60,12 @@ function displayOnPage(myLibrary) {
             });
             myLibrary = newLibrary;
             librarySizeCounter --;
+
+            //Logic to remove book from table display
+            let rowToRemove = document.querySelector(`[data-id="${bookToRemove}"]`);
+            let indexNum = rowToRemove.rowIndex;
+            let table = document.querySelector("table");
+            table.deleteRow(`${indexNum}`);
     });
 };
 
@@ -96,22 +101,4 @@ submitForm.addEventListener("submit", (e) => {
         displayOnPage(myLibrary);
     }
 });
-
-// Button logic to allow user to change "read" status for a book
-// const readStatusButton = document.querySelector("read-status");
-// readStatusButton.addEventListener("click", () => {
-//     console.log("This is a test");
-// });
-
-//Button logic to allow user to remove a book from the library
-// const removeBookButton = document.querySelector("delete-button");
-// removeBookButton.addEventListener("click", () => {
-//     let bookToRemove = removeBookButton.id;
-//     let newLibrary = myLibrary.filter(item => item.id !== bookToRemove);
-//     myLibrary = newLibrary;
-//     console.log(myLibrary);
-    
-    //document.querySelector(`row[data-id = ${bookToRemove}]`);
-
-// });
 
